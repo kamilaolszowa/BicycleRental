@@ -1,0 +1,26 @@
+{% extends 'bicycles/base.html' %}
+
+{% block content %}
+<!-- Zen coding -->
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Model</th>
+            <th>Marka</th>
+            <th>Dostępnych</th>
+            <th>Cena za dzień</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Django templates -->
+        {% for bicycle in bicycles %}
+        <tr>
+            <td>{{ bicycle.model }}</td>
+            <td>{{ bicycle.brand }}</td>
+            <td>{{ bicycle.number_in_stock }}</td>
+            <td>{{ bicycle.daily_rate }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
