@@ -9,6 +9,8 @@ class Brand(models.Model):
     def __str__(self):
         return self.name
 
+# part of a data model; we use that to get data from db
+
 
 class Bicycle(models.Model):
     model = models.CharField(max_length=255)

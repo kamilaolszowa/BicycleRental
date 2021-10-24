@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bicycles.apps.BicyclesConfig'
+    'bicycles.apps.BicyclesConfig',
+    'api.apps.ApiConfig'
+
 ]
 
 MIDDLEWARE = [
@@ -59,9 +61,13 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                # adds debuging info. to the context object that is passed from the view to the template
                 'django.template.context_processors.debug',
+                # adds request object to context so we can access it in template
                 'django.template.context_processors.request',
+                # bring info. about current user in template
                 'django.contrib.auth.context_processors.auth',
+                # used in displaying messages
                 'django.contrib.messages.context_processors.messages',
             ],
         },

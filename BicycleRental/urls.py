@@ -15,8 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from api.models import BicycleResource
+
+bicycle_resource = BicycleResource()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('bicycles/', include('bicycles.urls'))
+    path('bicycles/', include('bicycles.urls')),
+    path('api/', include(bicycle_resource.urls))
 ]

@@ -1,6 +1,6 @@
 from django.contrib.admin import options
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponse, Http404
+from django.shortcuts import render, get_object_or_404
 from . models import Bicycle
 
 # Main page of app
@@ -13,3 +13,10 @@ def index(request):
     # output = ', '.join([b.model for b in bicycles])
     # return HttpResponse(output)
     return render(request, 'bicycles/index.html', {'bicycles': bicycles})
+
+
+def detail(request, bicycle_id):
+    bicycle = get_object_or_404(Bicycle, pk=bicycle_id)
+    return render(request, 'bicycles/detail.html', {'bicycle': bicycle})
+    # TODO
+    # ValueError

@@ -15,7 +15,10 @@
         <!-- Django templates -->
         {% for bicycle in bicycles %}
         <tr>
-            <td>{{ bicycle.model }}</td>
+            <td>
+                <a href="{% url 'bicycles:detail' bicycle.id %}">{{ bicycle.model }}</a>
+
+            </td>
             <td>{{ bicycle.brand }}</td>
             <td>{{ bicycle.number_in_stock }}</td>
             <td>{{ bicycle.daily_rate }}</td>

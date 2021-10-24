@@ -1,0 +1,15 @@
+{% extends 'bicycles/base.html' %}
+
+{% block content %}
+<!-- dl - description list
+            t - term
+            d - description -->
+<dl>
+    <dt>Model</dt>
+    <dd>{{ bicycle.model }}</dd>
+    <dt>Brand</dt>
+    <dd>{{ bicycle.brand }}</dd>
+    <dt>Dostępnych</dt>
+    <dd>{{ bicycle.number_in_stock }}</dd>
+</dl>
+{% endblock %}
