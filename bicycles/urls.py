@@ -7,6 +7,6 @@ app_name = 'bicycles'
 urlpatterns = [
     # Mapping to a view function
     path('', views.index, name='index'),
-    path('<bicycle_id>', views.detail, name='detail')
+    path('<int:bicycle_id>', views.detail, name='detail')
 
 ]
