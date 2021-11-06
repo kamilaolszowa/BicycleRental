@@ -19,3 +19,4 @@ class Bicycle(models.Model):
     daily_rate = models.FloatField()
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     date_created = models.DateTimeField(default=timezone.now)
+    image_url = models.CharField(max_length=2083)

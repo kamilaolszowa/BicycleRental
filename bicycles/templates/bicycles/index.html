@@ -1,8 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<h1> Rowery</h1>
+<div class="row">
+    {% for bicycle in bicycles %}
+    <div class="col">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{{bicycle.image_url}}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{% url 'bicycles:detail' bicycle.id %}">{{ bicycle.model }}</a></h5>
+                <p class="card-text">{{ bicycle.daily_rate }} zł</p>
+                <a href="#" class="btn btn-primary">Zarezerwuj</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
 <!-- Zen coding -->
-<table class="table table-bordered table-hover">
+<!-- <table class="table table-bordered table-hover">
     <thead>
         <tr>
             <th>Model</th>
@@ -11,9 +28,9 @@
             <th>Cena za dzień</th>
         </tr>
     </thead>
-    <tbody>
-        <!-- Django templates -->
-        {% for bicycle in bicycles %}
+    <tbody> -->
+<!-- Django templates -->
+<!-- {% for bicycle in bicycles %}
         <tr>
             <td>
                 <a href="{% url 'bicycles:detail' bicycle.id %}">{{ bicycle.model }}</a>
@@ -25,5 +42,4 @@
         </tr>
         {% endfor %}
     </tbody>
-</table>
-{% endblock %}
+</table> -->
