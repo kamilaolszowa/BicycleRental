@@ -1,6 +1,8 @@
 from django.db import models
+from django.db.models.deletion import CASCADE
 from django.db.models.fields import related
 from django.utils import timezone
+from datetime import date
 
 
 class Brand(models.Model):
@@ -20,3 +22,10 @@ class Bicycle(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     date_created = models.DateTimeField(default=timezone.now)
     image_url = models.CharField(max_length=2083)
+
+
+class Reservation(models.Model):
+    date_start = models.DateField(default=date.today)
+    date_end = models.DateField(default=date.today)
+    bicycle = models.ForeignKey(
+        Bicycle, related_name='reservations', on_delete=CASCADE)

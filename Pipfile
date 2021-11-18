@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 pylint-django = "*"
 django-tastypie = "*"
+djangorestframework = "*"
 
 [dev-packages]
 autopep8 = "*"
