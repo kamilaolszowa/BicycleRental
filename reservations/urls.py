@@ -6,7 +6,7 @@ app_name = 'reservations'
 # Objects that map url endpoints to view functions
 urlpatterns = [
     # Mapping to a view function
-    path('', views.reservation_list),
-    path('<int:reservation_id>', views.reservation_detail)
+    path('', views.ReservationList.as_view()),
+    path('<int:pk>', views.ReservationDetail.as_view())
 
 ]

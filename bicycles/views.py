@@ -9,8 +9,12 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import Bicycle
 from .serializers import BicycleSerializer
+# from rest_framework.viewsets import ModelViewSet
 
 # Main page of app
+
+# TO DO
+# turn into class BicycleViewSet(ReadOnlyModelViewSet):
 
 
 @api_view()
