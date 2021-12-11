@@ -23,9 +23,5 @@ class Bicycle(models.Model):
     date_created = models.DateTimeField(default=timezone.now)
     image_url = models.CharField(max_length=2083)
 
-
-class Reservation(models.Model):
-    date_start = models.DateField(default=date.today)
-    date_end = models.DateField(default=date.today)
-    bicycle = models.ForeignKey(
-        Bicycle, related_name='reservations', on_delete=CASCADE)
+    def __str__(self):
+        return str(self.brand) + " " + self.model

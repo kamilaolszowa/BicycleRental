@@ -1,5 +1,6 @@
 from django.contrib import admin
-from . models import Brand, Bicycle
+from .serializers import BicycleSerializer
+from .models import Brand, Bicycle
 
 
 class BrandAdmin(admin.ModelAdmin):

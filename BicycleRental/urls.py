@@ -15,14 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from api.models import BicycleResource
+from api.models import BicycleResource, ReservationResource
 from . import views
 
 bicycle_resource = BicycleResource()
+reservations_resource = ReservationResource()
 
 urlpatterns = [
     path('', views.home),
     path('admin/', admin.site.urls),
     path('bicycles/', include('bicycles.urls')),
-    path('api/', include(bicycle_resource.urls))
+    path('reservations/', include('reservations.urls')),
+    path('api/bicycle/', include(bicycle_resource.urls)),
+    path('api/reservations/', include(reservations_resource.urls))
 ]
