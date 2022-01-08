@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .serializers import ReservationSerializer
-from .models import Reservation, Customer
+from .models import Reservation, Customer, Brand, Bicycle
 
 
 class ReservationAdmin(admin.ModelAdmin):
@@ -13,6 +13,19 @@ class CustomerAdmin(admin.ModelAdmin):
     list_select_related = ['user']
     ordering = ['user__first_name', 'user__last_name']
     search_fields = ['first_name__isstartswith', 'last_name__isstartswith']
+
+
+class BrandAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name')
+
+
+class BicycleAdmin(admin.ModelAdmin):
+    exclude = ('date_created', )
+    list_display = ('model', 'number_in_stock', 'daily_rate')
+
+
+admin.site.register(Brand, BrandAdmin)
+admin.site.register(Bicycle, BicycleAdmin)
 
 
 admin.site.register(Reservation, ReservationAdmin)

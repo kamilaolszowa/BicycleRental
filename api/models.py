@@ -1,6 +1,6 @@
 from django.db import models
 from tastypie.resources import ModelResource
-from bicycles.models import Bicycle
+from rental.models import Bicycle
 from rental.models import Reservation
 
 # we use this to represent a concept of a bicycle in restful api

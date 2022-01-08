@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'djoser',
     'corsheaders',
     'debug_toolbar',
-    'bicycles.apps.BicyclesConfig',
     'rental.apps.RentalConfig',
     'api.apps.ApiConfig',
     'core.apps.CoreConfig',
@@ -153,3 +152,9 @@ SIMPLE_JWT = {
 CORS_ORIGIN_ALLOW_ALL = True
 
 AUTH_USER_MODEL = 'core.User'
+
+DJOSER = {
+    'SERIALIZERS': {
+        'user_create': 'core.serializers.UserCreateSerializer'
+    }
+}

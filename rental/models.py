@@ -1,9 +1,9 @@
 from django.db import models
 from datetime import date
 from django.db.models.deletion import CASCADE
-from bicycles.models import Bicycle
 from django.conf import settings
 from django.contrib import admin
+from django.utils import timezone
 
 
 class Customer(models.Model):
@@ -31,6 +31,28 @@ class Customer(models.Model):
 
     class Meta:
         ordering = ['user__first_name', 'user__last_name']
+
+
+class Brand(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+# part of a data model; we use that to get data from db
+
+
+class Bicycle(models.Model):
+    model = models.CharField(max_length=255)
+    release_year = models.IntegerField()
+    number_in_stock = models.IntegerField()
+    daily_rate = models.FloatField()
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
+    date_created = models.DateTimeField(default=timezone.now)
+    image_url = models.CharField(max_length=2083)
+
+    def __str__(self):
+        return str(self.brand) + " " + self.model
 
 
 class Reservation(models.Model):
