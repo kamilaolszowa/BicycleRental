@@ -9,6 +9,8 @@ django-tastypie = "*"
 djangorestframework = "*"
 django = "==3.2"
 django-debug-toolbar = "*"
+djoser = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 autopep8 = "*"

@@ -28,5 +28,7 @@ urlpatterns = [
     path('reservations/', include('rental.urls')),
     path('api/bicycle/', include(bicycle_resource.urls)),
     path('api/reservations/', include(reservations_resource.urls)),
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.jwt')),
     path('__debug__/', include('debug_toolbar.urls'))
 ]
