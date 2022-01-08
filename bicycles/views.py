@@ -1,5 +1,5 @@
 from .models import Bicycle
-from reservations.models import Reservation
+from rental.models import Reservation
 from rest_framework.viewsets import ReadOnlyModelViewSet
 # from rest_framework.filters import OrderingFilter
 # from django_filters.rest_framework import DjangoFilterBackend
@@ -15,7 +15,7 @@ from datetime import datetime
 
 class BicycleViewSet(ReadOnlyModelViewSet):
     serializer_class = BicycleSerializer
-    queryset = Bicycle.objects.all()
+    queryset = Bicycle.objects.select_related('brand').all()
     # filer_backernds = [DjangoFilterBackend]
     # ordering_fields = ['brand', 'release_year', 'daily_rate']
 

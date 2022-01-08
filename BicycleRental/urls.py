@@ -25,7 +25,8 @@ urlpatterns = [
     path('', views.home),
     path('admin/', admin.site.urls),
     path('bicycles/', include('bicycles.urls')),
-    path('reservations/', include('reservations.urls')),
+    path('reservations/', include('rental.urls')),
     path('api/bicycle/', include(bicycle_resource.urls)),
-    path('api/reservations/', include(reservations_resource.urls))
+    path('api/reservations/', include(reservations_resource.urls)),
+    path('__debug__/', include('debug_toolbar.urls'))
 ]

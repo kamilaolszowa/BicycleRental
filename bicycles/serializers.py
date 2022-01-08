@@ -11,7 +11,7 @@ class BrandSerializer(serializers.ModelSerializer):
 
 
 class BicycleSerializer(serializers.ModelSerializer):
-    brand = BrandSerializer()
+    brand = BrandSerializer(many=False)
 
     class Meta:
         model = Bicycle

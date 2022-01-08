@@ -41,11 +41,14 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'bicycles.apps.BicyclesConfig',
-    'reservations.apps.ReservationsConfig',
-    'api.apps.ApiConfig'
+    'rental.apps.RentalConfig',
+    'api.apps.ApiConfig',
+    'core.apps.CoreConfig',
+    'debug_toolbar'
 ]
 
 MIDDLEWARE = [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -54,6 +57,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware'
+]
+
+INTERNAL_IPS = [
+    "127.0.0.1"
 ]
 
 ROOT_URLCONF = 'BicycleRental.urls'
@@ -135,3 +142,5 @@ REST_FRAMEWORK = {
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+AUTH_USER_MODEL = 'core.User'

@@ -3,6 +3,7 @@ from .serializers import ReservationSerializer
 from rest_framework.viewsets import ModelViewSet
 from django.urls import path
 from django.contrib import admin
+from django.core.exceptions import ValidationError
 
 # generic views
 
