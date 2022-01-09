@@ -19,11 +19,17 @@ from .serializers import CustomerSerializer, ReservationSerializer, BicycleSeria
 
 
 class ReservationViewSet(ModelViewSet):
-    queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
+    permission_classes = [IsAuthenticated]
 
-    def destroy(self, request, *args, **kwargs):
-        return super().destroy(request, *args, **kwargs)
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_staff:
+            return Reservation.objects.all()
+
+        (customer_id, created) = Customer.objects.only(
+            'id').get_or_create(user_id=user.id)
+        return Reservation.objects.filter(customer_id=customer_id)
 
 
 class CustomerViewSet(ModelViewSet):

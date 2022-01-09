@@ -60,7 +60,7 @@ class Reservation(models.Model):
     date_end = models.DateField(default=date.today)
     bicycle = models.ForeignKey(
         Bicycle, related_name='reservations', on_delete=CASCADE)
-    customer = models.ForeignKey(Customer, on_delete=models.PROTECT)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
     class Meta:
         permissions = [
