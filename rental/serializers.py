@@ -49,11 +49,11 @@ class MakeReservationSerialize(serializers.Serializer):
     date_start = serializers.DateField()
     date_end = serializers.DateField()
 
-    # def validate_bicycle_id(self, bicycle_id):
-    #     if not Bicycle.objects.filter(pk=bicycle_id).exists():
-    #         raise serializers.ValidationError(
-    #             "No bicycle with the given ID was found.")
-    #     return bicycle_id
+    def validate_bicycle_id(self, bicycle_id):
+        if not Bicycle.objects.filter(pk=bicycle_id).exists():
+            raise serializers.ValidationError(
+                "No bicycle with the given ID was found.")
+        return bicycle_id
 
     # def validate_date_end(self, date_start):
     #     print(date_start >= date.today())
