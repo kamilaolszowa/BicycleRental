@@ -12,7 +12,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet, ModelViewSet, ReadOnlyModelViewSet
 from rental.permissions import IsAdminOrReadOnly
 from .models import Customer, Reservation, Bicycle
-from .serializers import CustomerSerializer, ReservationSerializer, BicycleSerializer
+from .serializers import CustomerSerializer, MakeReservationSerialize, ReservationSerializer, BicycleSerializer
 
 
 # generic views
@@ -21,6 +21,14 @@ from .serializers import CustomerSerializer, ReservationSerializer, BicycleSeria
 class ReservationViewSet(ModelViewSet):
     serializer_class = ReservationSerializer
     permission_classes = [IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return MakeReservationSerialize
+        return ReservationSerializer
+
+    def get_serializer_context(self):
+        return {'user_id': self.request.user.id}
 
     def get_queryset(self):
         user = self.request.user
