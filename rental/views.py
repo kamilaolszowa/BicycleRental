@@ -1,3 +1,4 @@
+from decimal import Context
 from django.db.models import query
 from django.http import response
 from django.urls import path
@@ -19,16 +20,20 @@ from .serializers import CustomerSerializer, MakeReservationSerialize, Reservati
 
 
 class ReservationViewSet(ModelViewSet):
-    serializer_class = ReservationSerializer
     permission_classes = [IsAuthenticated]
+
+    def create(self, request, *args, **kwargs):
+        serializer = MakeReservationSerialize(data=request.data, context={
+                                              'user_id': self.request.user.id})
+        serializer.is_valid(raise_exception=True)
+        reservation = serializer.save()
+        serializer = ReservationSerializer(reservation)
+        return Response(serializer.data)
 
     def get_serializer_class(self):
         if self.request.method == 'POST':
             return MakeReservationSerialize
         return ReservationSerializer
-
-    def get_serializer_context(self):
-        return {'user_id': self.request.user.id}
 
     def get_queryset(self):
         user = self.request.user

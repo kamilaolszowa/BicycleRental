@@ -38,12 +38,15 @@ class CustomerSerializer(serializers.ModelSerializer):
 class MakeReservationSerialize(serializers.Serializer):
     # bicycle_id = serializers.IntegerField(validators=[MinValueValidator(1)])
     bicycle_id = serializers.IntegerField()
+    date_start = serializers.DateField()
+    date_end = serializers.DateField()
 
     def save(self, **kwargs):
-        print(self.validated_data['bicycle_id'])
-        print(self.context['user_id'])
         (customer, created) = Customer.objects.get_or_create(
             user_id=self.context['user_id'])
         bicycle_id = self.validated_data['bicycle_id']
-        Reservation.objects.create(
-            bicycle_id=bicycle_id, customer=customer)
+        date_start = self.validated_data['date_start']
+        date_end = self.validated_data['date_end']
+        reservation = Reservation.objects.create(
+            bicycle_id=bicycle_id, customer=customer, date_start=date_start, date_end=date_end)
+        return reservation
