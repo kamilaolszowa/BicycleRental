@@ -6,7 +6,8 @@ from django.urls import path
 from . import views
 
 router = routers.DefaultRouter()
-router.register('reservations', views.ReservationViewSet)
+router.register('reservations', views.ReservationViewSet,
+                basename='reservations')
 router.register('bicycles', views.BicycleViewSet, basename='bicycles')
 router.register('customers', views.CustomerViewSet)
 
