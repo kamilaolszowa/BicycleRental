@@ -22,7 +22,7 @@ from .serializers import CustomerSerializer, MakeReservationSerialize, Reservati
 
 
 class ReservationViewSet(ModelViewSet):
-    http_method_names = ['get', 'patch', 'delete', 'head', 'options']
+    http_method_names = ['get', 'post', 'patch', 'delete', 'head', 'options']
 
     def get_permissions(self):
         if self.request.method in ['PATCH', 'DELETE']:
