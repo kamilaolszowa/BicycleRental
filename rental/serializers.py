@@ -3,6 +3,7 @@ from django.db.models import fields
 from rest_framework import serializers
 from .models import Customer, Reservation, Brand, Bicycle
 from django.core.validators import MinValueValidator
+from datetime import date
 
 
 class BrandSerializer(serializers.ModelSerializer):
@@ -27,6 +28,14 @@ class ReservationSerializer(serializers.ModelSerializer):
         fields = ['id', 'date_start', 'date_end', 'bicycle', 'customer']
 
 
+# class UpdateReservationSerializer(serializers.ModelSerializer):
+#     bicycle = BicycleSerializer(many=False)
+
+#     class Meta:
+#         model = Reservation
+#         fields = ['date_start', 'date_end', 'bicycle']
+
+
 class CustomerSerializer(serializers.ModelSerializer):
     user_id = serializers.IntegerField(read_only=True)
 
@@ -36,10 +45,22 @@ class CustomerSerializer(serializers.ModelSerializer):
 
 
 class MakeReservationSerialize(serializers.Serializer):
-    # bicycle_id = serializers.IntegerField(validators=[MinValueValidator(1)])
     bicycle_id = serializers.IntegerField()
     date_start = serializers.DateField()
     date_end = serializers.DateField()
+
+    # def validate_bicycle_id(self, bicycle_id):
+    #     if not Bicycle.objects.filter(pk=bicycle_id).exists():
+    #         raise serializers.ValidationError(
+    #             "No bicycle with the given ID was found.")
+    #     return bicycle_id
+
+    # def validate_date_end(self, date_start):
+    #     print(date_start >= date.today())
+    #     if not (date_start >= date.today()):
+    #         raise serializers.ValidationError(
+    #             "Start date should be equal or greater than today date.")
+    #     return date_start
 
     def save(self, **kwargs):
         (customer, created) = Customer.objects.get_or_create(

@@ -1,4 +1,5 @@
 from decimal import Context
+from django import http
 from django.db.models import query
 from django.http import response
 from django.urls import path
@@ -20,7 +21,12 @@ from .serializers import CustomerSerializer, MakeReservationSerialize, Reservati
 
 
 class ReservationViewSet(ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    http_method_names = ['get', 'patch', 'delete', 'head', 'options']
+
+    def get_permissions(self):
+        if self.request.method in ['PATCH', 'DELETE']:
+            return [IsAdminUser()]
+        return [IsAuthenticated()]
 
     def create(self, request, *args, **kwargs):
         serializer = MakeReservationSerialize(data=request.data, context={
