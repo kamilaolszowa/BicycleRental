@@ -62,7 +62,7 @@ class MakeReservationSerialize(serializers.Serializer):
     #     return date_start
 
     def save(self, **kwargs):
-        (customer, created) = Customer.objects.get_or_create(
+        customer = Customer.objects.get(
             user_id=self.context['user_id'])
         bicycle_id = self.validated_data['bicycle_id']
         date_start = self.validated_data['date_start']
