@@ -1,4 +1,5 @@
 from decimal import Context
+import re
 from django import http
 from django.db.models import query
 from django.http import response
@@ -14,7 +15,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet, ModelViewSet, ReadOnlyModelViewSet
 from rental.permissions import IsAdminOrReadOnly
 from .models import Customer, Reservation, Bicycle
-from .serializers import CustomerSerializer, MakeReservationSerialize, ReservationSerializer, BicycleSerializer
+from .serializers import CustomerSerializer, MakeReservationSerialize, ReservationSerializer, BicycleSerializer, UpdateReservationSerializer
 
 
 # generic views
@@ -39,6 +40,8 @@ class ReservationViewSet(ModelViewSet):
     def get_serializer_class(self):
         if self.request.method == 'POST':
             return MakeReservationSerialize
+        elif self.request.method == 'PATCH':
+            return UpdateReservationSerializer
         return ReservationSerializer
 
     def get_queryset(self):
