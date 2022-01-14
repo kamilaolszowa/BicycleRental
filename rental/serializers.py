@@ -54,12 +54,14 @@ class MakeReservationSerialize(serializers.Serializer):
                 "No bicycle with the given ID was found.")
         return bicycle_id
 
-    # def validate_date_end(self, date_start):
-    #     print(date_start >= date.today())
-    #     if not (date_start >= date.today()):
-    #         raise serializers.ValidationError(
-    #             "Start date should be equal or greater than today date.")
-    #     return date_start
+    def validate(self, data):
+        if data['date_start'] > data['date_end']:
+            raise serializers.ValidationError(
+                {"date_end": "End date should be greater than start date."})
+        if data['date_start'] < date.today():
+            raise serializers.ValidationError(
+                {"date_start": "Start date should be equal or greater than today's date."})
+        return data
 
     def save(self, **kwargs):
         customer = Customer.objects.get(
