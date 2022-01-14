@@ -8,17 +8,20 @@ from django.contrib import admin
 from django.core.exceptions import ValidationError
 from rest_framework import serializers
 from rest_framework import permissions
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, Serializer
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework.decorators import action, permission_classes
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet, ModelViewSet, ReadOnlyModelViewSet
 from rental.permissions import IsAdminOrReadOnly
 from .models import Customer, Reservation, Bicycle
-from .serializers import CustomerSerializer, MakeReservationSerialize, ReservationSerializer, BicycleSerializer, UpdateReservationSerializer
+from .serializers import AllReservationSerializer, CustomerSerializer, MakeReservationSerialize, ReservationSerializer, BicycleSerializer, UpdateReservationSerializer
 
 
 # generic views
+class AllReservationViewSet(ReadOnlyModelViewSet):
+    queryset = Reservation.objects.all()
+    serializer_class = AllReservationSerializer
 
 
 class ReservationViewSet(ModelViewSet):

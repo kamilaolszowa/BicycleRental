@@ -28,6 +28,14 @@ class ReservationSerializer(serializers.ModelSerializer):
         fields = ['id', 'date_start', 'date_end', 'bicycle', 'customer']
 
 
+class AllReservationSerializer(serializers.ModelSerializer):
+    bicycle = BicycleSerializer(many=False)
+
+    class Meta:
+        model = Reservation
+        fields = ['date_start', 'date_end', 'bicycle']
+
+
 class UpdateReservationSerializer(serializers.ModelSerializer):
 
     class Meta:
