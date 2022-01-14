@@ -56,8 +56,6 @@ class MakeReservationSerialize(serializers.Serializer):
 
     def validate_date_end(self, date_end):
         date_start = self.initial_data.get('date_start')
-        print(date_start)
-        print(date_end)
         if date_start > str(date_end):
             raise serializers.ValidationError(
                 {"End date should be greater than start date."})
