@@ -8,6 +8,7 @@ from django.contrib import admin
 from django.core.exceptions import ValidationError
 from rest_framework import serializers
 from rest_framework import permissions
+from rest_framework.mixins import ListModelMixin
 from rest_framework.serializers import ModelSerializer, Serializer
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework.decorators import action, permission_classes
@@ -19,7 +20,8 @@ from .serializers import AllReservationSerializer, CustomerSerializer, MakeReser
 
 
 # generic views
-class AllReservationViewSet(ReadOnlyModelViewSet):
+# class AllReservationViewSet(ReadOnlyModelViewSet):
+class AllReservationViewSet(ListModelMixin, GenericViewSet):
     queryset = Reservation.objects.all()
     serializer_class = AllReservationSerializer
 
