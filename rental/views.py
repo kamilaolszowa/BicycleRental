@@ -1,3 +1,4 @@
+from django.conf.urls import url
 from decimal import Context
 import re
 from django import http
@@ -20,7 +21,6 @@ from .serializers import AllReservationSerializer, CustomerSerializer, MakeReser
 
 
 # generic views
-# class AllReservationViewSet(ReadOnlyModelViewSet):
 class AllReservationViewSet(ListModelMixin, GenericViewSet):
     queryset = Reservation.objects.all()
     serializer_class = AllReservationSerializer

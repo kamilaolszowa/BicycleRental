@@ -21,7 +21,7 @@ class BrandAdmin(admin.ModelAdmin):
 
 class BicycleAdmin(admin.ModelAdmin):
     exclude = ('date_created', )
-    list_display = ('model', 'number_in_stock', 'daily_rate')
+    list_display = ('model', 'daily_rate')
 
 
 admin.site.register(Brand, BrandAdmin)

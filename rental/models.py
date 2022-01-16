@@ -45,7 +45,6 @@ class Brand(models.Model):
 class Bicycle(models.Model):
     model = models.CharField(max_length=255)
     release_year = models.IntegerField()
-    number_in_stock = models.IntegerField()
     daily_rate = models.FloatField()
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     date_created = models.DateTimeField(default=timezone.now)
